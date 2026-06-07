@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crime Analytics Dashboard</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+</head>
+<body>
+
+  <div class="header">
+    <h1>Crime Analytics Dashboard</h1>
+    <p>Chicago Crime Data — SDG 16: Peace, Justice and Strong Institutions</p>
+  </div>
+
+  <div class="container">
+
+    <div class="metrics">
+      <div class="metric-card">
+        <p class="metric-label">Total Crimes</p>
+        <p class="metric-value" id="totalCrimes">Loading...</p>
+      </div>
+      <div class="metric-card">
+        <p class="metric-label">Crime Types</p>
+        <p class="metric-value" id="crimeTypes">Loading...</p>
+      </div>
+      <div class="metric-card">
+        <p class="metric-label">Districts</p>
+        <p class="metric-value" id="totalDistricts">Loading...</p>
+      </div>
+      <div class="metric-card">
+        <p class="metric-label">Peak Hour</p>
+        <p class="metric-value" id="peakHour">Loading...</p>
+      </div>
+    </div>
+
+    <div class="chart-row">
+      <div class="chart-card">
+        <h3>Monthly Crime Trend</h3>
+        <div class="chart-wrap">
+          <canvas id="trendChart"></canvas>
+        </div>
+      </div>
+      <div class="chart-card">
+        <h3>Crime Type Distribution</h3>
+        <div class="chart-wrap">
+          <canvas id="typeChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-row">
+      <div class="chart-card">
+        <h3>District-wise Crime Count</h3>
+        <div class="chart-wrap">
+          <canvas id="districtChart"></canvas>
+        </div>
+      </div>
+      <div class="chart-card">
+        <h3>Crimes by Hour of Day</h3>
+        <div class="chart-wrap">
+          <canvas id="hourChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="predict-card">
+      <h3>ML Risk Predictor</h3>
+      <p>Enter details to predict crime risk level for an area</p>
+      <div class="predict-form">
+        <select id="crimeTypeInput">
+          <option value="THEFT">Theft</option>
+          <option value="BATTERY">Battery</option>
+          <option value="ASSAULT">Assault</option>
+          <option value="ROBBERY">Robbery</option>
+          <option value="NARCOTICS">Narcotics</option>
+          <option value="HOMICIDE">Homicide</option>
+        </select>
+        <input type="number" id="districtInput" placeholder="District (1-25)" min="1" max="25" value="8">
+        <input type="number" id="hourInput" placeholder="Hour (0-23)" min="0" max="23" value="20">
+        <button onclick="predictRisk()">Predict Risk</button>
+      </div>
+      <div id="riskResult" class="risk-result"></div>
+    </div>
+
+  </div>
+
+  <script src="/static/js/dashboard.js"></script>
+</body>
+</html>
